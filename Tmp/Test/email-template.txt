@@ -1,0 +1,7 @@
+Hi << Recipient >>,
+
+This email is just an example on how to send emails using Power Automate Desktop.
+
+Awesome, right?
+
+Best,

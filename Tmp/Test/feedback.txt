@@ -1,0 +1,3 @@
+Comments|This is a comment|A great suggestion|John Diego|john.diego@learner.com
+BugReports|This is a bug report|Get rid of all the bugs, please|Pepe Trueno|pepe.trueno@learner.com
+FeatureRequest|This is a feature request|Make an amazing product|Juan Josh|juan.josh@learner.com
