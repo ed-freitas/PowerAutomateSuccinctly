@@ -1,0 +1,8 @@
+File.ReadTextFromFile.ReadText File: $'''C:\\Tmp\\Test\\sample_text.txt''' Encoding: File.TextFileEncoding.UTF8 Content=> FileContents
+Text.Replace Text: FileContents TextToFind: $''',''' IsRegEx: False IgnoreCase: False ReplaceWith: $'''\\n''' ActivateEscapeSequences: True Result=> Replaced
+Display.ShowMessageDialog.ShowMessage Title: $'''Text''' Message: Replaced Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+File.ReadTextFromFile.ReadText File: $'''C:\\Tmp\\Test\\customers-100.csv''' Encoding: File.TextFileEncoding.UTF8 Content=> FileContents
+Text.ParseText.Parse Text: FileContents TextToFind: $'''Sheryl''' StartingPosition: 0 IgnoreCase: False OccurrencePositions=> Positions
+Display.ShowMessageDialog.ShowMessage Title: $'''Positions''' Message: Positions Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+Text.GetSubtext.GetSubtext Text: FileContents CharacterPosition: Positions[0] NumberOfChars: 6 Subtext=> Person
+Display.ShowMessageDialog.ShowMessage Title: $'''Person''' Message: Person Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed

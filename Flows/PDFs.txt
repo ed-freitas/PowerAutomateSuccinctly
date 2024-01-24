@@ -1,0 +1,15 @@
+Folder.GetFiles Folder: $'''C:\\Tmp\\Test\\invoices''' FileFilter: $'''*.pdf''' IncludeSubfolders: True FailOnAccessDenied: True SortBy1: Folder.SortBy.NoSort SortDescending1: False SortBy2: Folder.SortBy.NoSort SortDescending2: False SortBy3: Folder.SortBy.NoSort SortDescending3: False Files=> Files
+Pdf.MergeFiles PDFFiles: Files MergedPDFPath: $'''C:\\Tmp\\Test\\invoices\\merged-invoice.pdf''' IfFileExists: Pdf.IfFileExists.Overwrite PasswordDelimiter: $''',''' MergedPDF=> MergedPDF
+Pdf.ExtractTextFromPDF.ExtractText PDFFile: $'''C:\\Tmp\\Test\\invoices\\merged-invoice.pdf''' DetectLayout: False ExtractedText=> ExtractedPDFText
+Text.SplitText.Split Text: ExtractedPDFText StandardDelimiter: Text.StandardDelimiter.NewLine DelimiterTimes: 1 Result=> TextList
+SET Total TO 0
+LOOP FOREACH CurrentItem IN TextList
+    IF Contains(CurrentItem.Trimmed, $'''Total in US Dollars''', True) THEN
+        Text.SplitText.Split Text: CurrentItem StandardDelimiter: Text.StandardDelimiter.Space DelimiterTimes: 1 Result=> TotalLine
+        Variables.IncreaseVariable Value: Total IncrementValue: TotalLine[4]
+    END
+END
+Excel.LaunchExcel.LaunchUnderExistingProcess Visible: True Instance=> ExcelInstance
+Excel.WriteToExcel.Write Instance: ExcelInstance Value: Total
+WAIT 5
+Excel.CloseExcel.CloseAndSaveAs Instance: ExcelInstance DocumentFormat: Excel.ExcelFormat.FromExtension DocumentPath: $'''C:\\Tmp\\Test\\invoices\\merged-invoice.xlsx'''

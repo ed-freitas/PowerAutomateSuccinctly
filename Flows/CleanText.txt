@@ -1,0 +1,12 @@
+SET NewVar TO $'''##### This is a #### String to #### Clean               '''
+Display.ShowMessageDialog.ShowMessage Title: $'''Text''' Message: NewVar Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+Text.CropText.CropTextAfterFlag Text: NewVar FromFlag: $'''#####''' IgnoreCase: False CroppedText=> CroppedText IsFlagFound=> IsFlagFound
+Text.Trim Text: CroppedText TrimOption: Text.TrimOption.Both TrimmedText=> TrimmedText
+Display.ShowMessageDialog.ShowMessage Title: $'''Text''' Message: TrimmedText Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+@@copilotGeneratedAction: 'False'
+Scripting.RunPythonScript PythonCode: $'''import re
+input_string = \"%TrimmedText%\"
+sentence = re.sub(r\'[^a-zA-Z\\s]\', \'\', input_string)
+cleaned_sentence = \' \'.join(sentence.split())
+print(cleaned_sentence)''' ScriptOutput=> PythonScriptOutput
+Display.ShowMessageDialog.ShowMessage Title: $'''Text''' Message: PythonScriptOutput Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed

@@ -1,0 +1,14 @@
+Variables.CreateNewList List=> List1
+Variables.CreateNewList List=> List2
+Variables.AddItemToList Item: $'''Item 1''' List: List1
+Variables.AddItemToList Item: $'''Item 2''' List: List1
+Variables.AddItemToList Item: $'''Item 3''' List: List2
+Variables.AddItemToList Item: $'''Item 1''' List: List2
+Display.ShowMessageDialog.ShowMessage Title: $'''Items in lIsts''' Message: $'''%List1%
+
+%List2%
+''' Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+Variables.MergeLists FirstList: List1 SecondList: List2 OutputList=> OutputList
+Display.ShowMessageDialog.ShowMessage Title: $'''Merged''' Message: OutputList Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+Variables.RemoveDuplicateItemsFromList List: OutputList IgnoreCase: False
+Display.ShowMessageDialog.ShowMessage Title: $'''Merged''' Message: OutputList Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed

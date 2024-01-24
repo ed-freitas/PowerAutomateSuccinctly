@@ -1,0 +1,17 @@
+IF (File.IfFile.Exists File: $'''C:\\Tmp\\Test\\origen\\index.html''') THEN
+    IF (File.IfFile.Exists File: $'''C:\\Tmp\\Test\\origen\\missing.html''') THEN
+        File.Copy Files: ['C:\\Tmp\\Test\\origen\\index.html', 'C:\\Tmp\\Test\\origen\\missing.html'] Destination: $'''C:\\Tmp\\Test\\destination''' IfFileExists: File.IfExists.Overwrite CopiedFiles=> CopiedFiles
+        Compression.ZipFiles ArchivePath: $'''C:\\Tmp\\Test\\destination\\zipped.zip''' FilesOrFoldersToZip: CopiedFiles CompressionLevel: Compression.CompressionLevel.BestBalanceOfSpeedAndCompression ArchiveComment: $'''''' ZipFile=> ZipFile
+        Display.ShowMessageDialog.ShowMessage Title: $'''Files''' Message: CopiedFiles Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+        LOOP FOREACH CurrentItem IN CopiedFiles
+            File.RenameFiles.RenameAddText Files: CurrentItem TextToAdd: $'''renamed-''' TextPosition: File.AddTextPosition.BeforeName IfFileExists: File.IfExists.Overwrite RenamedFiles=> RenamedFiles
+        END
+        Display.ShowMessageDialog.ShowMessage Title: $'''Files''' Message: CopiedFiles Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+        LOOP FOREACH CurrentItem IN CopiedFiles
+            File.GetPathPart File: CurrentItem RootPath=> RootPath Directory=> Directory FileName=> FileName FileNameWithoutExtension=> FileNameNoExtension Extension=> FileExtension
+            File.Delete Files: $''' %Directory%\\renamed-%FileName%'''
+        END
+        Display.ShowMessageDialog.ShowMessage Title: $'''Unzip''' Message: $'''Ready to unzip %ZipFile%''' Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+        Compression.UnzipFiles ArchivePath: $'''C:\\Tmp\\Test\\destination\\zipped.zip''' DestinationFolder: $'''C:\\Tmp\\Test\\destination\\unzipped'''
+    END
+END

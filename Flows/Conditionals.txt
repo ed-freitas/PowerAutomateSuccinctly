@@ -1,0 +1,5 @@
+IF (Folder.IfFolderExists.Exists Path: $'''C:\\Tmp''') THEN
+    Folder.Create FolderPath: $'''C:\\Tmp''' FolderName: $'''Test''' Folder=> NewFolder
+ELSE
+    Display.ShowMessageDialog.ShowMessage Title: $'''Error''' Message: $'''Folder Tmp doesn\'t exist''' Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+END

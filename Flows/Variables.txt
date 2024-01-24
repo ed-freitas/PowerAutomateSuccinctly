@@ -1,0 +1,7 @@
+SET Company TO $'''Syncfusion'''
+Variables.GenerateRandomNumber.RandomNumber MinimumValue: 1000 MaximumValue: 12000 RandomNumber=> RandomNumber
+Display.ShowMessageDialog.ShowMessage Title: $'''Number of books''' Message: $'''%Company% has %RandomNumber% in the library. It\'s time to learn something awesome today!''' Icon: Display.Icon.Information Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+Variables.IncreaseVariable Value: RandomNumber IncrementValue: 10
+Display.ShowMessageDialog.ShowMessage Title: $'''Number of books''' Message: $'''%Company% has %RandomNumber% in the library. It\'s time to learn something awesome today!''' Icon: Display.Icon.Information Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+Variables.DecreaseVariable Value: RandomNumber DecrementValue: 500
+Display.ShowMessageDialog.ShowMessage Title: $'''Number of books''' Message: $'''%Company% has %RandomNumber% in the library. It\'s time to learn something awesome today!''' Icon: Display.Icon.Information Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed

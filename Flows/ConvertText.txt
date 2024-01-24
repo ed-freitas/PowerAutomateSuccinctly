@@ -1,0 +1,6 @@
+Text.ToNumber Text: 1000 Number=> TextAsNumber
+Text.FromNumber Number: TextAsNumber DecimalPlaces: 2 UseThousandsSeparator: True FormattedNumber=> FormattedNumber
+Display.ShowMessageDialog.ShowMessage Title: $'''Number''' Message: FormattedNumber Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+Text.ConvertTextToDateTime.ToDateTime Text: $'''Thu Aug 12 2027 17:11:00''' DateTime=> TextAsDateTime
+Text.ConvertDateTimeToText.FromDateTime DateTime: TextAsDateTime StandardFormat: Text.WellKnownDateTimeFormat.LongDate Result=> FormattedDateTime
+Display.ShowMessageDialog.ShowMessage Title: $'''Date''' Message: FormattedDateTime Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed2

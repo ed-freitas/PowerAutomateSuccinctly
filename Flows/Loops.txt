@@ -1,0 +1,24 @@
+SET Counter TO 0
+LOOP LoopIndex FROM Counter TO 10 STEP 1
+    Variables.IncreaseVariable Value: Counter IncrementValue: 1
+    IF Counter = 2 THEN
+        EXIT LOOP
+    END
+END
+Display.ShowMessageDialog.ShowMessage Title: $'''Counter''' Message: $'''The counter value is: %Counter%''' Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+SET Counter TO 0
+Variables.CreateNewList List=> List
+LOOP WHILE (Counter) < (5)
+    Variables.IncreaseVariable Value: Counter IncrementValue: 1
+    Variables.AddItemToList Item: Counter List: List
+    BLOCK ConversionError
+ON BLOCK ERROR all
+
+END
+        Text.ToNumber Text: $'''abc''' Number=> TextAsNumber
+    END
+END
+Display.ShowMessageDialog.ShowMessage Title: $'''Counter''' Message: $'''The counter value is: %Counter%''' Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+LOOP FOREACH CurrentItem IN List
+    Display.ShowMessageDialog.ShowMessage Title: $'''Counter''' Message: $'''The counter value is: %CurrentItem%''' Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+END

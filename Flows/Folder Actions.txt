@@ -1,0 +1,9 @@
+Folder.Create FolderPath: $'''C:\\Tmp\\Test\\destination''' FolderName: $'''Copied''' Folder=> CopiedFolder
+Folder.Copy Folder: $'''C:\\Tmp\\Test\\origen''' Destination: CopiedFolder IfFolderExists: Folder.IfExists.Overwrite CopiedFolder=> ResultantFolder
+Display.ShowMessageDialog.ShowMessage Title: $'''Folder copied''' Message: $'''The folder has been copied: %CopiedFolder%''' Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed2
+Folder.Rename Folder: ResultantFolder NewName: $'''%ResultantFolder%-renamed''' RenamedFolder=> RenamedFolder
+Display.ShowMessageDialog.ShowMessage Title: $'''Renamed folder''' Message: $'''The folder %RenamedFolder% has been renamed''' Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed2
+Folder.Move Folder: $'''%ResultantFolder%-renamed''' Destination: $'''C:\\Tmp\\Test\\destination''' MovedFolder=> MovedFolder
+Display.ShowMessageDialog.ShowMessage Title: $'''Moved folder''' Message: $'''The folder %MovedFolder% has been moved''' Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed2
+Folder.Empty Folder: MovedFolder
+Folder.Delete Folder: MovedFolder

@@ -1,0 +1,5 @@
+SET StrToSplit TO $'''Name|Age|Sex|Profession|City|ZipCode|Country'''
+Text.SplitText.SplitWithDelimiter Text: StrToSplit CustomDelimiter: $'''|''' IsRegEx: False Result=> TextList
+Display.ShowMessageDialog.ShowMessage Title: $'''Split Text''' Message: TextList Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
+Text.JoinText.JoinWithCustomDelimiter List: TextList CustomDelimiter: $''',''' Result=> JoinedText
+Display.ShowMessageDialog.ShowMessage Title: $'''Joined Text''' Message: JoinedText Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed2
